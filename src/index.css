@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0a1628;
+  --color-navy-medium: #0d1f3c;
+  --color-navy-dark: #060f1e;
+  --color-gold: #d4af37;
+  --color-gold-light: #c9a84c;
+  --color-whatsapp: #25D366;
+  --color-slate-400: #cbd5e1;
+  
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Lato", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-navy text-white font-sans;
+    background-attachment: fixed;
+    background-image: radial-gradient(circle at top right, rgba(212, 175, 55, 0.05), transparent 400px),
+                      radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.03), transparent 400px);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply relative pb-4 mb-12 text-3xl md:text-5xl font-serif text-center;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gold transition-all duration-1000 ease-out;
+  }
+
+  .section-title.visible::after {
+    @apply w-24;
+  }
+
+  .glass-nav {
+    @apply backdrop-blur-md bg-navy/85 border-b border-gold/20;
+  }
+
+  .premium-card {
+    @apply bg-navy-medium border border-gold/10 p-8 rounded-lg transition-all duration-300 hover:bg-gold/5 border-l-4 border-l-gold hover:-translate-y-1;
+  }
+
+  .gold-line {
+    @apply h-0.5 bg-linear-to-r from-gold to-transparent w-16 mb-4;
+  }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: #d4af37; }
+}
+
+.typing-cursor {
+  border-right: 2px solid #d4af37;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-navy;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gold/50 rounded-full hover:bg-gold;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
